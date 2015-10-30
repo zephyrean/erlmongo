@@ -1257,8 +1257,8 @@ encode_element({Name, {all, Val}}) ->
 	encode_element({Name, [{<<"$all">>, {array, Val}}]});
 encode_element({Name, {size, Val}}) ->
 	encode_element({Name, [{<<"$size">>, Val}]});
-encode_element({'or',[{_,_}|_] = L}) ->
-	encode_element({<<"$or">>,{array,[[Obj] || Obj <- L]}});
+encode_element({'or',[_|_] = L}) ->
+	encode_element({<<"$or">>,{array,L}});
 encode_element({Name, {'not', Val}}) ->
 	encode_element({Name, [{<<"$not">>, Val}]});
 encode_element({Name, {exists, Val}}) ->
